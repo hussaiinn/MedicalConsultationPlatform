@@ -1,0 +1,16 @@
+
+
+button{
+    align-self: center;
+    background-color: #52aca3;
+    border: none;
+    color: white;
+    padding: 10px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.button {
+    -webkit-border-radius: 8px;
+}

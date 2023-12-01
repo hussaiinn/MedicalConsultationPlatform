@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+    /* font-size: 10rem; */
+  }
+
+  .column {
+    flex: 1;
+    padding: 20px;
+    background-color: #52aca3;
+    color: white;
+    transition: all 0.3s;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .expanded {
+    flex: 2;
+  }
+
+  .doctorDetails {
+    flex: 0 0 30%;
+    padding: 20px;
+    background-color: #52aca3;
+    color: white;
+  }

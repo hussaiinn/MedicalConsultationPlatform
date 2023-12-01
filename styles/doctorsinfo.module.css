@@ -1,0 +1,217 @@
+/* @import url('bespoke-slab.css');
+@import url('bespoke-stencil.css');
+@import url('crimson-pro.css');
+@import url('montserrat.css');
+@import url('quilon.css');
+@import url('sora.css');
+@import url('supreme.css');
+@import url('technor.css'); */
+
+/* * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+} */
+
+/* body {
+	font-family: Arial, sans-serif;
+	background-color: white;
+	/* display: flex; *
+	justify-content: center;
+	align-items: center;
+	justify-content: center;
+	
+} */
+
+.head{
+	margin-bottom: 0;
+	color: #52aca3;
+    height: 3%;
+}
+
+.sub-head{
+	color: black;
+	font-weight: normal;
+	margin-bottom: 2rem;
+	margin-top: 1rem;
+}
+
+.container {
+	display: flex;
+	width: 100%;
+	max-width: 100%;
+	background-color: white;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.svg-container {
+	flex: 20%;
+	padding: 20px;
+	background-color: #52aca3;
+	/* Background color for the SVG container */
+	color: #fff;
+	align-items: center;
+	justify-content: center;
+	padding-top: 12rem;
+}
+
+.leftImage {
+	position: fixed;
+	width: 27%;
+	height: auto;
+}
+
+.signup-container {
+	flex: 60%;
+	padding: 40px;
+}
+
+/* h2 {
+	font-size: 24px;
+	margin-bottom: 20px;
+	color: #333;
+} */
+
+#form {
+	display: flex;
+	flex-direction: column;
+}
+
+.input-group,
+.input-group1,
+.input-group2,
+.input-group3,
+.input-group4,
+.input-group5,
+.input-group6,
+.input-group7,
+.input-group8,
+.input-group9,
+.input-group10 {
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.input-group1,
+.input-group2,
+.input-group3,
+.input-group4,
+.input-group5,
+.input-group6,
+.input-group7,
+.input-group8,
+.input-group9,
+.input-group10 {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.ig1 {
+	width: 46%;
+}
+
+.ig2 {
+	width: 46%;
+}
+
+.ig2 label {
+	left: 54%;
+}
+
+.input-group9 #gender {
+	width: 100%;
+	border: none;
+	padding: 0.5rem;
+	border-bottom: 1px solid #52aca3;
+}
+
+.input-group9 #gender:focus{
+	outline: none;
+}
+
+.customPlace {
+	padding: 10px;
+	border: none;
+	border-bottom: 1px solid #52aca3;
+	/* Bottom border color */
+	outline: none;
+	width: 100%;
+	margin-bottom: 0.5rem;
+}
+
+
+
+.label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	transition: 0.3s ease all;
+	color: gray;
+}
+
+.customPlace:focus+label,
+.customPlace:valid+label {
+	top: -20px;
+	font-size: 14px;
+	color: #52aca3;
+	/* Label color when input is focused or has content */
+}
+
+.submitbutton {
+	background-color: #52aca3;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 16px;
+	border-radius: 4px;
+	transition: background-color 0.3s ease;
+	width: 100%;
+}
+
+.submitbutton:hover {
+	background-color: #428b87;
+	/* Hover color for the button */
+}
+
+
+
+.dateOfBirth[type=date]:required:invalid::-webkit-datetime-edit {
+	color: transparent;
+}
+
+.dateOfBirth[type=date]:focus::-webkit-datetime-edit {
+	color: black !important;
+}
+
+.h3{
+	margin-bottom: 2rem;
+	margin-top: 2rem;
+	color: #52aca3be;
+}
+
+.removeButton{
+	background-color: #80808091;
+    border-radius: 50%;
+    padding: 3px;
+    font-size: 13px;
+    margin-top: 0.8rem;
+    color: white;
+	margin-left: 1rem;
+	height: 1.2rem;
+	width: 1.2rem;
+	padding-bottom: 25px;
+	border: none;
+}
+
+.selected_options{
+	color: rgb(100, 98, 98);
+}
+
+.removeButton:hover{
+	background-color: rgb(61, 60, 60);
+}

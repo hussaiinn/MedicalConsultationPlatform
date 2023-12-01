@@ -1,0 +1,196 @@
+/* app.css */
+
+/* Resetting margin and padding for the entire page */
+/* body {
+    margin: 0;
+    padding: 0;
+  } */
+  
+  /* Styling the .bg and .main elements */
+   /* 100% of the viewport width */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+  
+
+ 
+  
+  
+  .introText {
+    /* border: 1px solid black; */
+    margin-left: 50px;
+    /* width: 40%; */
+    height: 15rem;
+    color: white;
+  }
+  .head {
+    font-weight: 900;
+    margin-bottom: -15px;
+  }
+  
+  .disc {
+    text-align: center;
+  }
+  .card {
+    border: 1px solid lightgray;
+    height: 17rem;
+    width: 71%;
+    /* margin: 20rem 0 0 5rem; */
+    /* border-radius: 30px; */
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    margin-top: 3rem;
+    
+  }
+  .cardImg {
+    border: 1px solid gray;
+    height: 12rem;
+    width: 20%;
+    margin: 2rem 0 0 3rem;
+  }
+  .cardTxt {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    width: 50%;
+    /* border: 1px solid red; */
+    height: 70%;
+    margin: 1rem 0 0 3rem;
+    border-right: 1px solid #8080805c;
+    justify-content: space-between;
+    height: 13rem;
+  }
+  .cardBtn {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 37%;
+    /* margin: 1rem 3rem 0 2rem; */
+    /* border: 1px solid purple; */
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    /* padding: 0.3rem; */
+    justify-content: center;
+    padding-right: 2rem;
+    padding-left: 1rem;
+  }
+  .drName {
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .drDegree{
+    color: gray;
+  }
+
+  .h3{
+    font-size: 1.3rem;
+  }
+  .drIntro {
+    /* display: flex; */
+    /* border: 1px solid orange; */
+    /* height: ; */
+    /* width: 20rem; */
+    margin: 0 0 -1.5rem 0;
+    height: 56%;
+  }
+  .drTimings {
+    height: 20%;
+    /* border: 1px solid orange; */
+    margin: 0 0 rem 0;
+  }
+  .drLang {
+    height: 30%;
+    /* border: 1px solid orange; */
+    margin: 0 0 1rem 0;
+  }
+  .langHead,
+  .timingsHead {
+    margin-bottom: 0.1rem;
+    font-size: 1rem;
+  }
+
+  .drFees{
+    font-size: 1.3rem;
+  }
+  
+  .cardButton {
+    margin-top: 30px;
+    margin-left: 0;
+    width: 100%;
+    /* text-align: center; */
+    /* padding: 1rem; */
+  }
+  
+  /* CSS */
+  .book {
+    padding: 12px 45px !important;
+    margin-top: 1rem !important;
+    background-color: orangered !important;
+    color: white !important;
+  }
+  .button4 {
+    /* appearance: none; */
+    background-color: rgba(128, 128, 128, 0.1);
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 10rem;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
+      rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    /* box-sizing: border-box; */
+    color: #24292e;
+    cursor: pointer;
+    display: flex;
+    /* text-align: center; */
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+      sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 600;
+    /* line-height: 20px; */
+    /* list-style: none; */
+    padding: 12px 66px;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  }
+  
+  .button4:hover {
+    background-color: #f3f4f6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+  }
+  
+  .button4:disabled {
+    background-color: #fafbfc;
+    border-color: rgba(27, 31, 35, 0.15);
+    color: #959da5;
+    cursor: default;
+  }
+  
+  .button4:active {
+    background-color: #edeff2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+  }
+  
+  .button4:focus {
+    outline: 1px transparent;
+  }
+  
+  .button4:before {
+    display: none;
+  }
+  
+  .button4:-webkit-details-marker {
+    display: none;
+  }
+  
+  /* google log0 */
+  
+  .google-img {
+    height: 40px;
+    width: 40px;
+    padding: 0;
+  }
+
+ 
+  

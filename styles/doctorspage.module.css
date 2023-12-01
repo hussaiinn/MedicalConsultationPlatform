@@ -1,0 +1,12 @@
+.doctorList{
+    padding-left: 8rem;
+    padding-right: 8rem;
+    position: absolute;
+    top: 15rem;
+    width: 100%;
+}
+
+.body{
+    background-color: gray;
+    width: 100%;
+}

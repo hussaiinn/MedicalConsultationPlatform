@@ -1,0 +1,137 @@
+
+
+
+.outer {
+    /* border: 1px solid black; */
+    /* border-top: 3px solid #f64e91; */
+    width: 30%;
+    padding: 2rem;
+    /* margin: 100vh; */
+    margin: auto;
+
+}
+
+h2{
+    text-align: center;
+    margin-top: 5rem;
+    font-weight: bold;
+}
+
+.inner1 {
+    width: 88%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.doctor-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border: 5px solid transparent;
+    border-radius: 50%;
+    background-clip: content-box;
+    background: linear-gradient(45deg, #4cc1ee, #6fe6dc, #5fd4e5);
+    align-items: center;
+}
+
+.doctor {
+    /* border: 5px solid ; */
+    /* border-color: linear-gradient(to right, #4cc1ee, #6fe6dc, #5fd4e5);  */
+    padding: 1.3rem;
+    background-color: white;
+    border-image-slice: 1;
+    border-radius: 50%;
+    width: 98%;
+    height: 98%;
+
+}
+
+.bi-heart-pulse {
+    color: #5fd4e5;
+}
+
+.bi-person{
+    color: #fd6c69;
+}
+
+
+.patient {
+    padding: 1.3rem;
+    background-color: white;
+    border-image-slice: 1;
+    border-radius: 50%;
+    width: 98%;
+    height: 98%;
+}
+
+.patient-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border: 5px solid transparent;
+    border-radius: 50%;
+    background-clip: content-box;
+    background: linear-gradient(45deg, #f74276, #fd6c69, #fb5871);
+    align-items: center;
+}
+
+.desc{
+    margin-top: 1.8rem;
+    color: gray;
+}
+
+.button-us{
+    width: 92%;
+    margin-top: 10rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-us button{
+    width: 40%;
+    height: 2.5rem;
+    border-radius: 2rem;
+}
+
+.button-us .previous{
+    background-color: white;
+    border: 1px solid rgb(164, 163, 163);
+    width: 10rem;
+}
+
+.button-us .next{
+    border: 1px solid rgb(206, 203, 203);
+    /* transition: 1s all ; */
+    width: 10rem;
+}
+
+.pink-highlight{
+    background: linear-gradient(45deg, #f74276, #e98786, #e28d9a);
+}
+
+.red-highlight{
+    background: linear-gradient(45deg, #4cc1ee, #6fe6dc, #5fd4e5)
+}
+
+.highlight1{
+    background: linear-gradient(45deg, #4cc1ee, #6fe6dc, #5fd4e5)
+}
+
+.highlight1 .bi-heart-pulse{
+    color: white;
+}
+
+.highlight2{
+    background: linear-gradient(45deg, #f74276, #e98786, #e28d9a);
+    /* z-index: 2; */
+
+}
+
+.highlight2 .bi-person{
+    color: white;
+}

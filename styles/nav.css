@@ -1,0 +1,166 @@
+/* Nav bar */
+.nav-us {
+    margin-left: 25px;
+    color: #52aca3;
+    font-size: 22px;
+    /* background-color: #000; */
+    /* position: fixed; */
+  }
+  
+  .navbar {
+    position: fixed;
+    z-index: 1;
+    background: white;
+    width: 100%;
+  }
+  
+  .nav-content-us {
+    margin-left: 30rem;
+    font-weight: 600;
+  }
+  
+  .nav-item-us {
+    margin-left: 18px;
+  }
+  
+  .us-button {
+    border: 1px solid #52aca3;
+    border-radius: 6px;
+    width: 100px;
+    text-align: center;
+  }
+  
+  #login:hover {
+    background-color: #52aca3;
+  }
+  
+  #login:hover a {
+    color: #fff;
+    transition: 0.3s ease-in-out;
+  }
+  
+  #signUp {
+    padding-top: 0.5rem;
+    background-color: #52aca3;
+    color: #fff !important;
+  }
+  
+
+  #signUp a {
+    color: #fff;
+  }
+  
+  #signUp:hover {
+    background-color: #fff;
+    transition: 0.3s ease-in-out;
+  }
+  
+  #signUp:hover a {
+    color: #000;
+  }
+
+  #signOut {
+    padding-top: 0.1rem;
+    background-color: #52aca3;
+    color: #fff !important;
+    transition: all 0.8s;
+  }
+
+  #signOut a {
+    color: #fff;
+  }
+  
+  #signOut:hover {
+    background-color: #fff;
+    transition: 0.8s ease-in-out;
+  }
+  
+  #signOut:hover a {
+    color: #52aca3;
+  }
+  
+  .nav-text-us {
+    position: relative;
+    display: inline-block;
+    border-bottom: 4px solid #52aca3;
+    border-style: hidden;
+  
+    /* width: 0; */
+    padding: 10px;
+    transition: border-bottom 0.3s ease-in-out;
+  }
+  
+  .nav-text-us::before {
+    content: "";
+    /* position: absolute; */
+    bottom: 0;
+    left: 0;
+    width: 0;
+    border-bottom: 4px solid #52aca3;
+    height: 2px;
+    border-bottom-left-radius: 10px;
+    transition: width 0.3s;
+  }
+  
+  .nav-text-us:hover {
+    width: 100%;
+    border-style: groove;
+  }
+  
+  .nav-button-us {
+    background: none;
+    border-style: none;
+  }
+  
+  #nav-login-us {
+    /* width: 10rem; */
+    padding: 0px 25px;
+    border: 1px solid #52aca3;
+    border-radius: 25px;
+    font-weight: 600;
+    color: #52aca3;
+  }
+  
+  #nav-sign-us {
+    padding: 0px 25px;
+    border: 1px solid #52aca3;
+    border-radius: 25px;
+    font-weight: 600;
+    background: #52aca3;
+    /* color: white !important; */
+  }
+  
+  #nav-sign-us .nav-link {
+    color: white;
+  }
+  
+  #nav-login-us:hover {
+    background: #52aca3;
+    transition: 0.5s ease-in-out;
+  }
+  
+  #nav-login-us .nav-link:hover {
+    color: white;
+  }
+  
+  #nav-sign-us .nav-link:hover {
+    /* background: white; */
+    color: black;
+  }
+  
+  #nav-sign-us:hover {
+    background-color: white;
+    transition: 0.5s ease-in-out;
+    color: black;
+  }
+
+
+  .profile_logo{
+    width: 45%;
+  }
+
+  .profile_box{
+    border: 1px solid black;
+    margin-left: 18px;
+    width: 100px;
+  }
