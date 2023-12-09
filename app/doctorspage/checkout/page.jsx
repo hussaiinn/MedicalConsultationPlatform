@@ -19,6 +19,9 @@ const IndexPage = ({ params }) => {
   const [docData, setDocData] = useState();
   const [userData, setUserData] = useState();
   const [userEmail, setUserEmail] = useState(null);
+  const [timeSlots, setTimeSlots] = useState(null);
+  const [grayedOutDates, setGrayedOutDates] = useState([]);
+  const [grayedOutTimeSlots, setGrayedOutTimeSlots] = useState([]);
   const { data: session } = useSession();
   const [selectedTime, setSelectedTime] = useState("");
   const [appointmentData, setAppointmentData] = useState({
@@ -114,6 +117,48 @@ const IndexPage = ({ params }) => {
 
     getUserInfo();
   }, [userEmail]);
+
+  useEffect(() => {
+    const fetchTimeSlots = async () => {
+      try {
+        let email5 = searchParams.get("id");
+        const response = await fetch(`/api/appointment/appdata/${email5}/data`);
+        const data1 = await response.json();
+        setTimeSlots(data1);
+        console.log(data1);
+        // console.log(timeSlots);
+      } catch (error) {
+        console.error("Error fetching time slots:", error);
+      }
+    };
+
+    fetchTimeSlots();
+  }, []);
+
+  useEffect(() => {
+    console.log(timeSlots); // This will log the updated timeSlots state
+    const currentDate = new Date();
+    const today = currentDate.toISOString().split("T")[0];
+    if (timeSlots) {
+      const bookedDates = timeSlots
+        .filter((slot) => slot.approved)
+        .map((slot) => slot.date);
+
+      const pastDates = timeSlots
+        .filter((slot) => new Date(slot.date) < currentDate)
+        .map((slot) => slot.date);
+
+      setGrayedOutDates([...bookedDates, ...pastDates, today]);
+      console.log(grayedOutDates);
+      const bookedTimeSlots = timeSlots
+        .filter((slot) => slot.approved)
+        .map((slot) => slot.time);
+
+      setGrayedOutTimeSlots(bookedTimeSlots);
+      console.log(grayedOutTimeSlots)
+    }
+  }, [timeSlots]);
+
   console.log(docData);
   console.log(userData);
 
@@ -173,7 +218,7 @@ const IndexPage = ({ params }) => {
             name="date"
             readOnly
           />
-          <TimeSlotSelect onSelect={handletimeselect} />
+          <TimeSlotSelect onSelect={handletimeselect} grayedOutTimeSlots={grayedOutTimeSlots} />
           <button type="submit" onClick={handleColumn2Submit}>
             Next
           </button>
@@ -223,6 +268,7 @@ const IndexPage = ({ params }) => {
         <CustomCalendar
           onSelectDate={setSelectedDate}
           onClose={closeCalendar}
+          grayedOutDates={grayedOutDates}
         />
       )}{" "}
       <br />

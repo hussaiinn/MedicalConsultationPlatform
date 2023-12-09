@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const CustomCalendar = ({ onSelectDate, onClose }) => {
+const CustomCalendar = ({ onSelectDate, onClose, grayedOutDates }) => {
   const [selectedDate, setSelectedDate] = useState(null);
 
   const generateCalendar = () => {
@@ -43,6 +43,7 @@ const CustomCalendar = ({ onSelectDate, onClose }) => {
 
     return calendar;
   };
+  console.log(grayedOutDates.includes('2023-12-20T18:30:00.000Z'))
 
   const handleDateClick = (date) => {
     setSelectedDate(date);
@@ -70,15 +71,16 @@ const CustomCalendar = ({ onSelectDate, onClose }) => {
           <td
             key={dayIndex}
             onClick={() => date && handleDateClick(date)}
-            className={
+            className={`${
               date &&
-              selectedDate &&
-              date.toDateString() === selectedDate.toDateString()
-                ? "selected"
-                : ""
-            }
+              (grayedOutDates.includes(date.toISOString().split("T")[0]) ||
+                (selectedDate &&
+                  date.toDateString() === selectedDate.toDateString()))
+                ? <p>grayed-out selected</p>
+                : "husss"
+            }`}
           >
-            {date && date.getDate()}
+            {date && date.getDate()} 
           </td>
         ))}
       </tr>

@@ -1,7 +1,7 @@
 // components/TimeSlotSelect.js
 import React from "react";
 
-const TimeSlotSelect = ({ onSelect }) => {
+const TimeSlotSelect = ({ onSelect, grayedOutTimeSlots }) => {
   // Generate time slots from 8 am to 9 pm with a 30-minute interval
   const generateTimeSlots = () => {
     const timeSlots = [];
@@ -35,7 +35,13 @@ const TimeSlotSelect = ({ onSelect }) => {
     <select onChange={(e) => onSelect(e.target.value)}>
       <option value="">Select a Time Slot</option>
       {timeSlots.map((slot, index) => (
-        <option key={index} value={slot.value}>
+        <option
+          key={index}
+          value={slot.value}
+          className={
+            grayedOutTimeSlots.includes(slot.value) ? "grayed-out" : ""
+          }
+        >
           {slot.label}
         </option>
       ))}
