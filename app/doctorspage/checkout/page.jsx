@@ -8,8 +8,11 @@ import { useSelector } from "react-redux";
 import { useSearchParams } from "next/navigation";
 import { get } from "mongoose";
 import { useSession } from "next-auth/react";
+// import Router from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const IndexPage = ({ params }) => {
+  const router = useRouter();
   const [column1Expanded, setColumn1Expanded] = useState(true);
   const [column2Expanded, setColumn2Expanded] = useState(false);
   const [column3Expanded, setColumn3Expanded] = useState(false);
@@ -69,7 +72,8 @@ const IndexPage = ({ params }) => {
           body: JSON.stringify(appointmentData),
         });
         if (res.ok) {
-          alert("data stored");
+          alert("Appointment Booked, Wait for Doctors Approval");
+          router.push("/");
         }
       } catch (error) {
         console.log("Error in storing appointment");
@@ -191,98 +195,101 @@ const IndexPage = ({ params }) => {
   };
 
   return (
-    <div className={style.container}>
-      <div
-        className={`${style.column} ${column1Expanded ? style.expanded : ""}`}
-      >
-        {/* Column 1: Personal Details */}
-        <h2>Personal Details</h2>
-        {/* Your form for personal details */}
-        <input
-          type="text"
-          placeholder="your name"
-          name="patientName"
-          value={appointmentData.patientName}
-          onChange={handleappointmentData}
-        />
-        <button onClick={handleColumn1Submit}>Next</button>
-      </div>
-      <div
-        className={`${style.column} ${column2Expanded ? style.expanded : ""}`}
-      >
-        {/* Column 2: Select Date and Time */}
-        <h2>Select Date and Time</h2>
-        <form action="" onSubmit={handledatetime}>
+    <>
+      <div className={style.container}>
+        <div
+          className={`${style.column} ${column1Expanded ? style.expanded : ""}`}
+        >
+          {/* Column 1: Personal Details */}
+          <h2>Personal Details</h2>
+          {/* Your form for personal details */}
           <input
             type="text"
-            placeholder="date"
-            value={selectedDate}
-            onFocus={openCalendar}
-            name="date"
-            readOnly
-          />
-          <TimeSlotSelect
-            onSelect={handletimeselect}
-            grayedOutTimeSlots={grayedOutTimeSlots}
-            selectedDate={selectedDate}
-            data={timeSlots ? timeSlots : null}
-          />
-          <button type="submit" onClick={handleColumn2Submit}>
-            Next
-          </button>
-        </form>
-      </div>
-      <div
-        className={`${style.column} ${column3Expanded ? style.expanded : ""}`}
-      >
-        {/* Column 3: Payment Option */}
-        <h2>Payment Option</h2>
-        {/* Your form for payment option */}
-        <form action="" onSubmit={handlefinalSubmit}>
-          <input
-            type="text"
-            placeholder="Taransaction ID"
-            name="trnsId"
-            value={appointmentData.trnsId}
+            placeholder="your name"
+            name="patientName"
+            value={appointmentData.patientName}
             onChange={handleappointmentData}
           />
-          <input
-            type="text"
-            placeholder="Accound holder Name"
-            name="accName"
-            value={appointmentData.accName}
-            onChange={handleappointmentData}
+          <button onClick={handleColumn1Submit}>Next</button>
+        </div>
+        <div
+          className={`${style.column} ${column2Expanded ? style.expanded : ""}`}
+        >
+          {/* Column 2: Select Date and Time */}
+          <h2>Select Date and Time</h2>
+          <form action="" onSubmit={handledatetime}>
+            <input
+              type="text"
+              placeholder="date"
+              value={selectedDate}
+              onFocus={openCalendar}
+              name="date"
+              readOnly
+            />
+            <TimeSlotSelect
+              onSelect={handletimeselect}
+              grayedOutTimeSlots={grayedOutTimeSlots}
+              selectedDate={selectedDate}
+              data={timeSlots ? timeSlots : null}
+            />
+            <button type="submit" onClick={handleColumn2Submit}>
+              Next
+            </button>
+          </form>
+        </div>
+        <div
+          className={`${style.column} ${column3Expanded ? style.expanded : ""}`}
+        >
+          {/* Column 3: Payment Option */}
+          <h2>Payment Option</h2>
+          {/* Your form for payment option */}
+          <form action="" onSubmit={handlefinalSubmit}>
+            <input
+              type="text"
+              placeholder="Taransaction ID"
+              name="trnsId"
+              value={appointmentData.trnsId}
+              onChange={handleappointmentData}
+            />
+            <input
+              type="text"
+              placeholder="Accound holder Name"
+              name="accName"
+              value={appointmentData.accName}
+              onChange={handleappointmentData}
+            />
+            <input
+              type="text"
+              placeholder="Amount Paid"
+              name="amtPaid"
+              value={appointmentData.amtPaid}
+              onChange={handleappointmentData}
+            />
+            <label htmlFor="ss">Upload Payment Screen shot</label>
+            <input type="file" id="ss" />
+            <button type="submit" onClick={handleColumn3Submit}>
+              Submit
+            </button>
+          </form>
+        </div>
+        <div className={style.doctorDetails}>
+          {/* Right side: Doctor's Details */}
+          {/* Your content for doctor details */}
+        </div>
+        {/* Calendar component */}
+        {calendarOpen && (
+          <CustomCalendar
+            onSelectDate={setSelectedDate}
+            onClose={closeCalendar}
+            grayedOutDates={grayedOutDates}
           />
-          <input
-            type="text"
-            placeholder="Amount Paid"
-            name="amtPaid"
-            value={appointmentData.amtPaid}
-            onChange={handleappointmentData}
-          />
-          <label htmlFor="ss">Upload Payment Screen shot</label>
-          <input type="file" id="ss" />
-          <button type="submit" onClick={handleColumn3Submit}>
-            Submit
-          </button>
-        </form>
+        )}{" "}
+        <br />
+        {/* {docData.firstName} */}
+        {/* {userData.name} */}
       </div>
-      <div className={style.doctorDetails}>
-        {/* Right side: Doctor's Details */}
-        {/* Your content for doctor details */}
-      </div>
-      {/* Calendar component */}
-      {calendarOpen && (
-        <CustomCalendar
-          onSelectDate={setSelectedDate}
-          onClose={closeCalendar}
-          grayedOutDates={grayedOutDates}
-        />
-      )}{" "}
-      <br />
-      {/* {docData.firstName} */}
-      {/* {userData.name} */}
-    </div>
+      
+    </>
   );
 };
 

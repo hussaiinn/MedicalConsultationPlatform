@@ -68,7 +68,7 @@ const CustomCalendar = ({ onSelectDate, onClose, grayedOutDates }) => {
       new Date().toISOString() > new Date(date).toISOString() ||
       new Date(date).toDateString().includes("Sun")
     ) {
-      alert(`Can't be selected`);
+      alert(`This Date can not be selected `);
     } else {
       setSelectedDate(date);
       onSelectDate(date.toLocaleDateString()); // Format the date before passing it to the parent

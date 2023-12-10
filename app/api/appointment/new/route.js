@@ -17,7 +17,7 @@ export const POST = async (req, res) => {
       approved,
       reject,
     } = await req.json();
-    console.log(docId, userId, amtPaid)
+    console.log(docId, userId, amtPaid, date, time, trnsId, accName, amtPaid, approved, reject)
     await connectToDB();
     await Appointment.create({
       docId,

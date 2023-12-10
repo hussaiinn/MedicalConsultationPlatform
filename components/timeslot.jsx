@@ -65,18 +65,27 @@ const TimeSlotSelect = ({
     return timeSlots;
   };
 
+  const handleTimeChange = (e) => {
+    if (graytimes?.includes(e.target.value)) {
+      alert("This slot is already booked");
+    } else {
+      onSelect(e.target.value);
+    }
+  };
+
   const timeSlots = generateTimeSlots();
 
   return (
-    <select onChange={(e) => onSelect(e.target.value, graytimes)}>
+    <select onChange={handleTimeChange}>
+      {" "}
+      {/**(e) => onSelect(e.target.value, graytimes) */}
       <option value="">Select a Time Slot</option>
       {timeSlots.map((slot, index) => (
         <option
           key={index}
           value={slot.value}
-          className={
-            graytimes?.includes(slot.value) ? styles.grayedouts : ""
-          }
+          className={graytimes?.includes(slot.value) ? styles.grayedouts : ""}
+          disabled={graytimes?.includes(slot.value)}
         >
           {slot.label}
         </option>

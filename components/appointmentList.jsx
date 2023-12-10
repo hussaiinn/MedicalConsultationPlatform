@@ -36,7 +36,7 @@ const AppointmentListt = ({ type, data, approvedUpdate, ut }) => {
         <td>{data.trnsId}</td>
         <td>{data.amtPaid}</td>
         <td>6265522765</td>
-        {isdoctor? (
+        {isdoctor && istype? (
           <>
             <td
               style={{ color: "green" }}
