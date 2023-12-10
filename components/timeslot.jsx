@@ -1,8 +1,44 @@
 // components/TimeSlotSelect.js
-import React from "react";
+import React, { useEffect, useState } from "react";
+import styles from "@styles/customcaleder.module.css";
 
-const TimeSlotSelect = ({ onSelect, grayedOutTimeSlots }) => {
+const TimeSlotSelect = ({
+  onSelect,
+  grayedOutTimeSlots,
+  selectedDate,
+  data,
+}) => {
   // Generate time slots from 8 am to 9 pm with a 30-minute interval
+  const [graytimes, setGrayedtimes] = useState(null);
+  console.log(selectedDate);
+  console.log(data);
+  useEffect(() => {
+    console.log("changed");
+    console.log(new Date(selectedDate).toDateString());
+    if (data) {
+      const filteredData = data.filter((item) => {
+        console.log(
+          new Date(item.date).toDateString() ===
+            new Date(selectedDate).toDateString()
+        );
+        return (
+          new Date(item.date).toDateString() ===
+          new Date(selectedDate).toDateString()
+        );
+      });
+      console.log(filteredData);
+      if (filteredData) {
+        const tmarray = filteredData.map((item) => item.time);
+        console.log(tmarray);
+        setGrayedtimes(tmarray);
+      }
+    }
+  }, [selectedDate]);
+
+  if (graytimes) {
+    console.log(graytimes);
+  }
+
   const generateTimeSlots = () => {
     const timeSlots = [];
     let currentTime = new Date();
@@ -32,14 +68,14 @@ const TimeSlotSelect = ({ onSelect, grayedOutTimeSlots }) => {
   const timeSlots = generateTimeSlots();
 
   return (
-    <select onChange={(e) => onSelect(e.target.value)}>
+    <select onChange={(e) => onSelect(e.target.value, graytimes)}>
       <option value="">Select a Time Slot</option>
       {timeSlots.map((slot, index) => (
         <option
           key={index}
           value={slot.value}
           className={
-            grayedOutTimeSlots.includes(slot.value) ? "grayed-out" : ""
+            graytimes?.includes(slot.value) ? styles.grayedouts : ""
           }
         >
           {slot.label}

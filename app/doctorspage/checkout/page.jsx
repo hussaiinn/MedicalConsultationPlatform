@@ -81,6 +81,9 @@ const IndexPage = ({ params }) => {
   const handletimeselect = (time) => {
     setSelectedTime(time);
   };
+  if (selectedTime) {
+    console.log(selectedTime);
+  }
 
   const handledatetime = (e) => {
     e.preventDefault();
@@ -148,14 +151,14 @@ const IndexPage = ({ params }) => {
         .filter((slot) => new Date(slot.date) < currentDate)
         .map((slot) => slot.date);
 
-      setGrayedOutDates([...bookedDates, ...pastDates, today]);
+      setGrayedOutDates([...pastDates, today]);
       console.log(grayedOutDates);
       const bookedTimeSlots = timeSlots
         .filter((slot) => slot.approved)
         .map((slot) => slot.time);
 
       setGrayedOutTimeSlots(bookedTimeSlots);
-      console.log(grayedOutTimeSlots)
+      console.log(grayedOutTimeSlots);
     }
   }, [timeSlots]);
 
@@ -218,7 +221,12 @@ const IndexPage = ({ params }) => {
             name="date"
             readOnly
           />
-          <TimeSlotSelect onSelect={handletimeselect} grayedOutTimeSlots={grayedOutTimeSlots} />
+          <TimeSlotSelect
+            onSelect={handletimeselect}
+            grayedOutTimeSlots={grayedOutTimeSlots}
+            selectedDate={selectedDate}
+            data={timeSlots ? timeSlots : null}
+          />
           <button type="submit" onClick={handleColumn2Submit}>
             Next
           </button>

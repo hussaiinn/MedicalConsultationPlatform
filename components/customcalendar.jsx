@@ -1,7 +1,9 @@
 import { useState } from "react";
+import styles from "@styles/customcaleder.module.css";
 
 const CustomCalendar = ({ onSelectDate, onClose, grayedOutDates }) => {
   const [selectedDate, setSelectedDate] = useState(null);
+  const checkCalander = [];
 
   const generateCalendar = () => {
     const currentDate = new Date();
@@ -17,6 +19,7 @@ const CustomCalendar = ({ onSelectDate, onClose, grayedOutDates }) => {
     );
 
     const calendar = [];
+
     let dayCounter = 1;
 
     for (let i = 0; i < 6; i++) {
@@ -39,15 +42,37 @@ const CustomCalendar = ({ onSelectDate, onClose, grayedOutDates }) => {
       }
 
       calendar.push(week);
+      // console.log(week);
+      week.map((date, dayIndex) => {
+        const orgdate = new Date(date);
+        const formdate = orgdate.toISOString();
+        checkCalander.push(formdate);
+        // console.log(new Date(date).toISOString(),'    ',grayedOutDates.includes(new Date(date).toISOString()));
+      });
     }
 
     return calendar;
   };
-  console.log(grayedOutDates.includes('2023-12-20T18:30:00.000Z'))
+  // console.log(grayedOutDates.includes('2023-12-20T18:30:00.000Z'))
+  console.log(selectedDate);
+  const originalDate = new Date(selectedDate);
+
+  const formattedDate = originalDate.toISOString();
+  // console.log(typeof(formattedDate))
+  // console.log(grayedOutDates.includes(formattedDate));
+  // console.log('hey',grayedOutDates[20],'      ', selectedDate)
 
   const handleDateClick = (date) => {
-    setSelectedDate(date);
-    onSelectDate(date.toLocaleDateString()); // Format the date before passing it to the parent
+    if (
+      grayedOutDates.includes(new Date(date).toISOString()) ||
+      new Date().toISOString() > new Date(date).toISOString() ||
+      new Date(date).toDateString().includes("Sun")
+    ) {
+      alert(`Can't be selected`);
+    } else {
+      setSelectedDate(date);
+      onSelectDate(date.toLocaleDateString()); // Format the date before passing it to the parent
+    }
   };
 
   const renderHeader = () => {
@@ -71,18 +96,35 @@ const CustomCalendar = ({ onSelectDate, onClose, grayedOutDates }) => {
           <td
             key={dayIndex}
             onClick={() => date && handleDateClick(date)}
+            // className={`${
+            //   date &&
+            //   (grayedOutDates.includes(date.toISOString().split("T")[0]) ||
+            //     (selectedDate &&
+            //       date.toDateString() === selectedDate.toDateString()))
+            //     ? <p>grayed-out selected</p>
+            //     : "husss"
+            // }`}
+            //  className={`${checkCalander.map((date)=>{
+            //   grayedOutDates.includes(date)?styles.grayedouts:null
+            //  })}`}
             className={`${
-              date &&
-              (grayedOutDates.includes(date.toISOString().split("T")[0]) ||
-                (selectedDate &&
-                  date.toDateString() === selectedDate.toDateString()))
-                ? <p>grayed-out selected</p>
-                : "husss"
+              grayedOutDates.includes(new Date(date).toISOString()) ||
+              new Date().toISOString() > new Date(date).toISOString() ||
+              new Date(date).toDateString().includes("Sun")
+                ? styles.grayedouts
+                : null
             }`}
           >
-            {date && date.getDate()} 
+            {date && date.getDate()}
+            {/* {console.log(grayedOutDates.includes(new Date(date).toISOString()))} */}
+            {console.log(new Date(date).toDateString().includes("Sun"))}
           </td>
         ))}
+        {/* {grayedOutDates.includes(formattedDate)?(
+          alert('alread busy on this date')
+        ):(
+          <></>
+        )} */}
       </tr>
     ));
   };
