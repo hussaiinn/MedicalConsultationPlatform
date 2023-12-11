@@ -2,6 +2,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import style from "@styles/checkout.module.css";
+import styles from "@styles/checkout.module.css";
 import CustomCalendar from "@components/customcalendar";
 import TimeSlotSelect from "@components/timeslot";
 import { useSelector } from "react-redux";
@@ -10,10 +11,18 @@ import { get } from "mongoose";
 import { useSession } from "next-auth/react";
 // import Router from "next/navigation";
 import { useRouter } from "next/navigation";
+import Overflow1 from "@components/overflow";
+import Overflow2 from "@components/overflow2";
+import Overflow3 from "@components/overflow3";
+// import NavBar from "@components/Nav";
+import NavBar from "@components/Nav";
+import OfferBox from "@components/offer";
+import ConsultationDetails from "@components/consDetails";
+import Footer from "@components/footer";
 
 const IndexPage = ({ params }) => {
   const router = useRouter();
-  const [column1Expanded, setColumn1Expanded] = useState(true);
+  const [column1Expanded, setColumn1Expanded] = useState(false);
   const [column2Expanded, setColumn2Expanded] = useState(false);
   const [column3Expanded, setColumn3Expanded] = useState(false);
   const [calendarOpen, setCalendarOpen] = useState(false);
@@ -36,6 +45,7 @@ const IndexPage = ({ params }) => {
     trnsId: "",
     accName: "",
     amtPaid: "",
+    mobile: "",
     approved: false,
     reject: false,
   });
@@ -65,19 +75,25 @@ const IndexPage = ({ params }) => {
       // console.log(appointmentData.docId);
       // console.log(appointmentData.userId);
       // console.log(appointmentData.patientName);
-      try {
-        const res = await fetch(`../../api/appointment/new`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(appointmentData),
-        });
-        if (res.ok) {
-          alert("Appointment Booked, Wait for Doctors Approval");
-          router.push("/");
+      if (docData.fees - appointmentData.amtPaid > 0) {
+        alert("Please Pay the full amount");
+      } else {
+        try {
+          const res = await fetch(`../../api/appointment/new`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(appointmentData),
+          });
+          if (res.ok) {
+            alert("Appointment Booked, Wait for Doctors Approval");
+            router.push(
+              `/profilepagedoc/appointments?id=${userData.email}&ut=1`
+            );
+          }
+        } catch (error) {
+          console.log("Error in storing appointment");
+          console.log(error);
         }
-      } catch (error) {
-        console.log("Error in storing appointment");
-        console.log(error);
       }
     }
   };
@@ -169,6 +185,22 @@ const IndexPage = ({ params }) => {
   console.log(docData);
   console.log(userData);
 
+  const handleColumn1expand = () => {
+    setColumn1Expanded(!column1Expanded);
+  };
+
+  const handleColumn2expand = () => {
+    setColumn2Expanded(!column2Expanded);
+    if (column2Expanded === true) {
+      console.log("column 2 is false");
+      setCalendarOpen(false);
+    }
+  };
+
+  const handleColumn3expand = () => {
+    setColumn3Expanded(!column3Expanded);
+  };
+
   const handleColumn1Submit = () => {
     // Perform validation or other logic as needed before moving to the next column
     setColumn1Expanded(false);
@@ -179,6 +211,9 @@ const IndexPage = ({ params }) => {
     // Perform validation or other logic as needed before moving to the next column
     setColumn2Expanded(false);
     setColumn3Expanded(true);
+    if (column2Expanded === true) {
+      setCalendarOpen(false);
+    }
   };
 
   const handleColumn3Submit = () => {
@@ -194,15 +229,29 @@ const IndexPage = ({ params }) => {
     setCalendarOpen(false);
   };
 
+  /**new one */
+  const [isExpand, setIsExpanded] = useState({
+    // isExpanded: false,
+    isExpanded1: false,
+    isExpanded2: false,
+    isExpanded3: false,
+  });
+  const handleExpand = (name) => {
+    setIsExpanded((crrexp) => {
+      return { ...crrexp, [name]: !crrexp[name] };
+    });
+  };
   return (
     <>
-      <div className={style.container}>
+      <NavBar />
+      <OfferBox />
+      {/* <div className={style.container}>
         <div
           className={`${style.column} ${column1Expanded ? style.expanded : ""}`}
         >
-          {/* Column 1: Personal Details */}
+          {/* Column 1: Personal Details }
           <h2>Personal Details</h2>
-          {/* Your form for personal details */}
+          {/* Your form for personal details }
           <input
             type="text"
             placeholder="your name"
@@ -215,7 +264,7 @@ const IndexPage = ({ params }) => {
         <div
           className={`${style.column} ${column2Expanded ? style.expanded : ""}`}
         >
-          {/* Column 2: Select Date and Time */}
+          {/* Column 2: Select Date and Time }
           <h2>Select Date and Time</h2>
           <form action="" onSubmit={handledatetime}>
             <input
@@ -240,9 +289,9 @@ const IndexPage = ({ params }) => {
         <div
           className={`${style.column} ${column3Expanded ? style.expanded : ""}`}
         >
-          {/* Column 3: Payment Option */}
+          {/* Column 3: Payment Option }
           <h2>Payment Option</h2>
-          {/* Your form for payment option */}
+          {/* Your form for payment option }
           <form action="" onSubmit={handlefinalSubmit}>
             <input
               type="text"
@@ -273,10 +322,10 @@ const IndexPage = ({ params }) => {
           </form>
         </div>
         <div className={style.doctorDetails}>
-          {/* Right side: Doctor's Details */}
-          {/* Your content for doctor details */}
+          {/* Right side: Doctor's Details }
+          {/* Your content for doctor details }
         </div>
-        {/* Calendar component */}
+        {/* Calendar component }
         {calendarOpen && (
           <CustomCalendar
             onSelectDate={setSelectedDate}
@@ -285,10 +334,174 @@ const IndexPage = ({ params }) => {
           />
         )}{" "}
         <br />
-        {/* {docData.firstName} */}
-        {/* {userData.name} */}
+        {/* {docData.firstName} }
+        {/* {userData.name} }
       </div>
-      
+       */}
+
+      <div className={style.taskList}>
+        <div className={style.taskCard}>
+          <h5 className={style.taskHeading}>
+            <span className={style.num}>1</span> {userData?.name.toUpperCase()}{" "}
+            | +91 {userData?.mobile}
+          </h5>
+          {/* <Overflow /> */}
+        </div>
+        <div className={column1Expanded ? style.expanded : style.taskCard}>
+          <h5 className={style.taskHeading} onClick={handleColumn1expand}>
+            <span className={style.num}>2</span> Patient Details
+          </h5>
+          {/* <Overflow1 /> */}
+          <div className={styles.expandInfo}>
+            <div className={styles.expandInput}>
+              <input
+                type="text"
+                placeholder="your name"
+                name="patientName"
+                value={appointmentData.patientName}
+                onChange={handleappointmentData}
+                className={styles.inputASDate}
+              />
+              <input
+                type="text"
+                placeholder="Contact Number"
+                name="mobile"
+                value={appointmentData.mobile}
+                onChange={handleappointmentData}
+                className={styles.inputASDate}
+              />
+            </div>
+            <div className={styles.expandMesBtn}>
+              {/* <span className={styles.message}>*Consultation Timings</span> */}
+              <button
+                className={`${styles["button-4"]} ${styles.consultBtn}`}
+                onClick={handleColumn1Submit}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          className={column2Expanded ? style.expanded : style.taskCard}
+          style={{ height: calendarOpen ? "70%" : null }}
+        >
+          <h5 className={style.taskHeading} onClick={handleColumn2expand}>
+            <span className={style.num}>3</span> Consultation Date and Time
+          </h5>
+          {/* <Overflow2 /> */}
+          <div className={styles.expandInfo}>
+            {calendarOpen && (
+              <CustomCalendar
+                onSelectDate={setSelectedDate}
+                onClose={closeCalendar}
+                grayedOutDates={grayedOutDates}
+              />
+            )}{" "}
+            <div className={styles.expandInput}>
+              <form
+                action=""
+                onSubmit={handledatetime}
+                className={style.formStyle}
+              >
+                <input
+                  type="text"
+                  placeholder="date"
+                  value={selectedDate}
+                  onFocus={openCalendar}
+                  name="date"
+                  className={style.inputASDate}
+                  readOnly
+                />
+                <TimeSlotSelect
+                  onSelect={handletimeselect}
+                  grayedOutTimeSlots={grayedOutTimeSlots}
+                  selectedDate={selectedDate}
+                  data={timeSlots ? timeSlots : null}
+                />
+              </form>
+            </div>
+            <div className={styles.expandMesBtn}>
+              {/* <span className={styles.message}>*Consultation Timings</span> */}
+              <button
+                className={`${styles["button-4"]} ${styles.consultBtn}`}
+                onClick={handleColumn2Submit}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className={column3Expanded ? style.expanded3 : style.taskCard}>
+          <h5 className={style.taskHeading} onClick={handleColumn3expand}>
+            <span className={style.num}>4</span> Payment Details
+          </h5>
+          {/* <Overflow3 /> */}
+          <div className={styles.expandInfo}>
+              <h4 className={styles.upi}>UPI ID: - {docData?.upi}</h4>
+            <div className={styles.expandInput}>
+              <form
+                action=""
+                onSubmit={handlefinalSubmit}
+                className={style.formStyle}
+              >
+                <input
+                  type="text"
+                  placeholder="Taransaction ID"
+                  name="trnsId"
+                  value={appointmentData.trnsId}
+                  onChange={handleappointmentData}
+                  className={style.paydetails}
+                />
+                <input
+                  type="text"
+                  placeholder="Accound holder Name"
+                  name="accName"
+                  value={appointmentData.accName}
+                  onChange={handleappointmentData}
+                  className={style.paydetails}
+                />
+                <div className={style.formStyle}>
+                  <input
+                    type="text"
+                    placeholder="Amount Paid"
+                    name="amtPaid"
+                    value={appointmentData.amtPaid}
+                    onChange={handleappointmentData}
+                    className={style.paydetails}
+                  />
+                  <div className={style.paydetails}>
+                    <label htmlFor="ss">Payment Screen shot</label>
+                    <input type="file" id="ss" />
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  onClick={handleColumn3Submit}
+                  className={`${styles["button-4"]} ${styles.consultBtn}`}
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+            <div className={styles.expandMesBtn}>
+              {/* <span className={styles.message}>*Consultation Timings</span> */}
+              {/* <button className={`${styles["button-4"]} ${styles.consultBtn}`}>
+                Submit
+              </button> */}
+            </div>
+          </div>
+        </div>
+      </div>
+      <ConsultationDetails
+        data={docData ? docData : ""}
+        ptname={appointmentData.patientName}
+        ptmobile={appointmentData.mobile}
+        ptpaid={appointmentData.amtPaid}
+      />
+      <div className={style.FooterConatiner}>
+        <Footer />
+      </div>
     </>
   );
 };

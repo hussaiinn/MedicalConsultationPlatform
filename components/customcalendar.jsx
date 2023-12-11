@@ -91,7 +91,7 @@ const CustomCalendar = ({ onSelectDate, onClose, grayedOutDates }) => {
     const calendar = generateCalendar();
 
     return calendar.map((week, weekIndex) => (
-      <tr key={weekIndex}>
+      <tr key={weekIndex}  className={styles.tableheads}>
         {week.map((date, dayIndex) => (
           <td
             key={dayIndex}
@@ -130,13 +130,13 @@ const CustomCalendar = ({ onSelectDate, onClose, grayedOutDates }) => {
   };
 
   return (
-    <div className="calendar-container">
-      <table>
+    <div className={styles.calendarContainer}>
+      <table className={styles.tabless}>
         <thead>{renderHeader()}</thead>
         <tbody>{renderDays()}</tbody>
         <tfoot>
           {/* Close button */}
-          <button onClick={onClose}>Close</button>
+          <button onClick={onClose} className={styles.buttonclose}>Close</button>
         </tfoot>
       </table>
     </div>

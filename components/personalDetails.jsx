@@ -59,6 +59,12 @@ const PersonalDetails = ({ handleData, email }) => {
     practicetype: "",
     practicech: "",
     fees: "",
+    accname:"",
+    accno:"",
+    bnkname:"",
+    brnchname:"",
+    ifsc:"",
+    upi:"",
     // medicalDegree: null,
     // license: null,
     // rc: null,
@@ -389,8 +395,103 @@ const PersonalDetails = ({ handleData, email }) => {
           {/* <label htmlFor="rc">Registration Certificate</label> */}
         </div>
 
+        {/* Payment Details */}
+        <h3 className={style.h3}>Payment Details</h3>
+        <div className={`${style["input-group"]} ${style.pureInput}`}>
+          <input
+            type="text"
+            id="accname"
+            name="accname"
+            className={style.customPlace}
+            value={finalFormData.accname}
+            onChange={handleFormData}
+            required
+          />
+          <label htmlFor="accname" className={style.label}>
+            Account Name
+          </label>
+        </div>
+        <div className={`${style["input-group4"]} ${style.pureInput}`}>
+          <div className={style.ig1}>
+            <input
+              type="number"
+              id="accno"
+              name="accno"
+              className={style.customPlace}
+              value={finalFormData.accno}
+              onChange={handleFormData}
+              required
+            />
+            <label htmlFor="accno" className={style.label}>
+              Account Number
+            </label>
+          </div>
+          <div className={style.ig2}>
+            <input
+              type="text"
+              id="bnkname"
+              name="bnkname"
+              className={style.customPlace}
+              value={finalFormData.bnkname}
+              onChange={handleFormData}
+              required
+            />
+            <label htmlFor="bnkname" className={style.label}>
+              Bank Name
+            </label>
+          </div>
+        </div>
+        <div className={`${style["input-group5"]} ${style.pureInput}`}>
+          <div className={style.ig1}>
+            <input
+              type="text"
+              id="brnchname"
+              className={style.customPlace}
+              name="brnchname"
+              value={finalFormData.brnchname}
+              onChange={handleFormData}
+              required
+            />
+            <label htmlFor="brnchname" className={style.label}>
+              Branch Name
+            </label>
+          </div>
+          <div className={style.ig2}>
+            <input
+              type="text"
+              id="ifsc"
+              name="ifsc"
+              className={style.customPlace}
+              value={finalFormData.ifsc}
+              onChange={handleFormData}
+              required
+            />
+            <label htmlFor="ifsc" className={style.label}>
+              IFSC code{" "}
+            </label>
+          </div>
+          
+        </div>
+        <div className={`${style["input-group5"]} ${style.pureInput}`}>
+        <div className={style.ig1}>
+            <input
+              type="text"
+              id="upi"
+              name="upi"
+              className={style.customPlace}
+              value={finalFormData.upi}
+              onChange={handleFormData}
+              required
+            />
+            <label htmlFor="upi" className={style.label}>
+              UPI ID
+            </label>
+          </div>
+          
+        </div>
+
         <div className={styles.multiSelectDropdown}>
-          <h3 className={style.h3}>Multi-Select Dropdown</h3>
+          <h3 className={style.h3}>Medical Expertise</h3>
           <div className={styles.dropdownContainer}>
             <input
               type="text"

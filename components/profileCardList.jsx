@@ -1,16 +1,22 @@
 import React from "react";
-import style from '@styles/profileCardList.module.css'
+import style from "@styles/profileCardList.module.css";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
+import { useSession } from "next-auth/react";
 
-const ProfileCard = ({data}) => {
+const ProfileCard = ({ data }) => {
   const router = useRouter();
+  const { data: session } = useSession();
   const dispatch = useDispatch();
-  const handleonClick = ()=>{
-    dispatch({type: 'SET_DATA', payload: data});
-
-    router.push(`doctorspage/checkout?id=${data.email}`)
-  }
+  const handleonClick = () => {
+    dispatch({ type: "SET_DATA", payload: data });
+    if (session?.user) {
+      router.push(`doctorspage/checkout?id=${data.email}`);
+    }
+    else{
+      router.push(`/login-options?name=signup`)
+    }
+  };
   return (
     <div>
       <div className={style.main}>
@@ -18,7 +24,9 @@ const ProfileCard = ({data}) => {
           <div className={style.cardImg}></div>
           <div className={style.cardTxt}>
             <div className={style.drIntro}>
-              <h4 className={style.drName}>Dr. {data.firstName} {data.lastName}</h4>
+              <h4 className={style.drName}>
+                Dr. {data.firstName} {data.lastName}
+              </h4>
               <h6 className={style.drDegree}>{data.qualification}</h6>
             </div>
             <div className={style.drLang}>
@@ -32,7 +40,7 @@ const ProfileCard = ({data}) => {
           </div>
           <div className={style.cardBtn}>
             <h3 className={style.h3}>Consultation Fees</h3>
-            <span className={style.drFees}>₹ {data.fees }</span>
+            <span className={style.drFees}>₹ {data.fees}</span>
             <button
               type="button"
               className={`${style.profile} ${style.cardButton} ${style.button4}`}

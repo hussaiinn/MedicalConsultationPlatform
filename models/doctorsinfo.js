@@ -66,6 +66,30 @@ const DoctorInfor = new Schema(
       type: Number,
       required: true,
     },
+    accname:{
+      type: String,
+      required: true,
+    },
+    accno:{
+      type: Number,
+      required: true,
+    },
+    bnkname:{
+      type: String,
+      required: true,
+    },
+    brnchname:{
+      type: String,
+      required: true,
+    },
+    ifsc:{
+      type: String,
+      required: true,
+    },
+    upi:{
+      type: String,
+      required: true,
+    },
     // medicalDegree: {
     //   data: {
     //     type: String,

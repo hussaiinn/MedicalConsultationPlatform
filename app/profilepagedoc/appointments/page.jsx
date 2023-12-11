@@ -13,6 +13,7 @@ const AppointmentPage = ({ params }) => {
   const [passingdata, setpassedData] = useState([]);
   const searchParams = useSearchParams();
   const ut = searchParams.get("ut");
+  // const [flagfordata, setFlagforData] = useState(false)
 
   const router = useRouter();
   const [flag, setflag] = useState(false);
@@ -44,7 +45,7 @@ const AppointmentPage = ({ params }) => {
     };
 
     getData();
-  }, []);
+  }, [flag]);
 
   const updateApproved = async (dataId, action) => {
     console.log("In page.jsx");
@@ -88,6 +89,10 @@ const AppointmentPage = ({ params }) => {
     setType("Rejected");
   };
 
+  const handlepending = () => {
+    setType("pending");
+  };
+
   // if(type === 'new'){
   //   setpassedData(unapprovedData)
   // }
@@ -113,6 +118,9 @@ const AppointmentPage = ({ params }) => {
               </p>
               <p className={styles.sidetext} onClick={handlerejected}>
                 Rejected appointments
+              </p>
+              <p className={styles.sidetext} onClick={handlepending}>
+                Pending appointments
               </p>
             </>
           ) : (
@@ -143,6 +151,8 @@ const AppointmentPage = ({ params }) => {
               ? rejectedDAta
               : type === "previous"
               ? approvedData
+              : type === "pending"
+              ? unapprovedData
               : null
           }
           updateapprove={updateApproved}

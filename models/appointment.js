@@ -33,6 +33,10 @@ const AppointmentSchema = new Schema({
     type: Number,
     required: true,
   },
+  mobile:{
+    type: String,
+    required: true,
+  },
   approved: {
     type: Boolean,
     default: false,

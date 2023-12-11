@@ -7,3 +7,21 @@
 -moz-user-select: none; /* Firefox */
 -ms-user-select: none;
 }
+
+.calendarContainer{
+    padding-left: 5rem;
+}
+
+.tabless{
+    width: 23rem;
+    background-color: #d3d3d33d;
+}
+
+.tableheads{
+    padding: 0.5rem;
+}
+
+.buttonclose{
+    align-self: center;
+    justify-self: center;
+}

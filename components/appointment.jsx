@@ -55,6 +55,10 @@ const Appointment = ({ type, data, updateapprove, ut }) => {
       });
       setfinaldata(futureDates)
     }
+
+    if(type === 'pending'){
+      setfinaldata(data)
+    }
   }, [type, data]);
   return (
     <>
@@ -80,12 +84,13 @@ const Appointment = ({ type, data, updateapprove, ut }) => {
               <th>Contact No.</th>
             </tr>
           </thead>
-          {finalData.map((d) => (
+          {finalData.map((d, indx) => (
             <AppointmentListt
               type={type}
               data={d}
               approvedUpdate={updateapprove}
               ut={ut}
+              index={indx}
             />
           ))}
         </table>

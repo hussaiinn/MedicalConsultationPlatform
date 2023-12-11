@@ -14,6 +14,7 @@ export const POST = async (req, res) => {
       trnsId,
       accName,
       amtPaid,
+      mobile,
       approved,
       reject,
     } = await req.json();
@@ -28,6 +29,7 @@ export const POST = async (req, res) => {
       trnsId,
       accName,
       amtPaid,
+      mobile,
       approved,
       reject,
     });

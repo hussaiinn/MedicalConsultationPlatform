@@ -4,11 +4,13 @@ import "@styles/doctorsignin.css";
 import undraw1 from "../../../../public/images/undraw_remotely_-2-j6y.svg";
 import "@./././fonts/icomoon/style.css";
 import { signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 const SignIn = () => {
+  const {data: session} = useSession();
   const handleSignIn = async () => {
     signIn("google", {
-      callbackUrl: `${"/"}`,
+      callbackUrl: `${`/user_profile?id=${session?.user?.email}`}`,
     });
   };
   return (

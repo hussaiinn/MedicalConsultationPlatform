@@ -14,9 +14,13 @@
     transition: all 0.3s;
     overflow: hidden;
     cursor: pointer;
+    
   }
 
   .expanded {
+    flex: 2;
+  }
+  .expanded3 {
     flex: 2;
   }
 
@@ -26,3 +30,358 @@
     background-color: #52aca3;
     color: white;
   }
+
+  /* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
+
+.main {
+  height: 100vh;
+  width: 100%;
+  background: #f8f8f8;
+  display: flex;
+  justify-content: space-around;
+  /* flex-direction: row; */
+  /* background-color: red; */
+}
+.taskCard {
+  display: flex;
+  width: 100%;
+  border: 2px solid rgba(211, 211, 211, 0.415);
+  background-color: white;
+  /* border-radius: 10px; */
+  height: 10%;
+  align-items: center;
+  margin: 10px;
+  justify-content: space-around;
+  flex-direction: column;
+  cursor: pointer;
+  padding-top: 0.7rem;
+}
+
+.taskList {
+  position: absolute;
+  top: 17rem;
+  left: 5rem;
+  height: 40rem;
+  width: 40rem;
+  /* border: 2px solid black; */
+  /* border: 1px solid black; */
+  /* display: flex; */
+}
+.taskHeading {
+  display: flex;
+  padding: 0px 0 0px 15px;
+  width: 100%;
+  /* height: 15%; */
+  color: #00a0a8;
+  font-size: 18px;
+  cursor: pointer;
+  /* flex-direction: column; */
+}
+.num {
+  border-radius: 2px;
+  /* border: 2px solid black; */
+  /* height: 5px;
+  width: 10rem; */
+  padding: 2px 6px;
+  margin-right: 10px;
+  color: white;
+  background-color: #00a0a8;
+}
+.expanded {
+  height: 50%;
+  width: 100%;
+  align-items: flex-start;
+  border: 2px solid rgba(211, 211, 211, 0.415);
+
+  /* border: 3px solid black; */
+  background-color: white;
+  /* border-radius: 10px; */
+  margin: 10px;
+  /* cursor: pointer; */
+  /* margin: 10px; */
+}
+.expanded .taskHeading {
+  margin: 0;
+  padding: 15px;
+}
+.expanded3 .taskHeading {
+  margin: 0;
+  padding: 15px;
+}
+.consultBtn {
+  background: rgb(255, 68, 0);
+  border-radius: 25px;
+  color: white;
+  padding: 3rem 6rem;
+  margin-top: 3rem;
+}
+/* .expanded2,
+.taskHeading {
+  margin: 0;
+  padding: 15px;
+} */
+.taskCard .expandInfo {
+  display: none;
+}
+
+.taskCard {
+  transition: 0.2s all;
+  /* transition: 1.5s display; */
+}
+.expanded {
+  transition: 0.2s all;
+}
+.expanded3 {
+  transition: 0.2s all;
+}
+.expandInfo {
+  display: flex;
+  flex-direction: column;
+  height: 83%;
+  width: 100%;
+  /* border: 3px solid white; */
+  border-radius: 10px;
+  transition: 3s all;
+}
+.expandInput {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  margin: 0;
+  transition: 3s all;
+}
+
+.inputASDate,
+.selectfor {
+  background: none;
+  border: none;
+  border-bottom: 2px solid lightgray;
+  outline: none;
+  padding: 10px;
+  box-sizing: border-box;
+  text-transform: capitalize;
+  width: 30%;
+}
+.message {
+  /* display: flex !important; */
+  color: red;
+  /* border: 3px solid black; */
+
+  margin-bottom: 2rem;
+  /* padding-left: -10rem; */
+}
+.expandMesBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  margin-left: 2rem;
+}
+
+.details {
+  position: absolute;
+  top: 17rem;
+  left: 55rem;
+  height: 30rem;
+  width: 23rem;
+  /* border: 1px solid black; */
+  /* background-color: red; */
+  margin: 0;
+  box-shadow: 0 0 40px 5px #00000011
+  /* border: 2px solid lightgray; */
+}
+.detailsHeading {
+  text-align: center;
+  /* justify-self: center; */
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  background: #00a0a8;
+  height: 8%;
+  width: 100%;
+  border-radius: 6px;
+  padding-top: 0.4rem;
+}
+.detailsName {
+  background-color: white;
+  border-radius: 3px;
+  border: 1px solid white;
+  padding-left: 13px;
+  width: 100%;
+  height: 12%;
+  padding-top: 10px;
+  margin-top: 12px;
+
+  /* overflow: hidden; */
+}
+.DrSpecialty{
+  font-size: 1rem;
+}
+.DrName {
+  margin: 0;
+  font-size: 1rem;
+  text-transform: capitalize;
+  
+}
+
+.clrGrey {
+  color: rgba(128, 128, 128, 0.673);
+}
+.greyBtmBorder {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.673);
+  padding-bottom: 3.5rem;
+}
+.marginTp0 {
+  margin-top: 0;
+}
+.flexBtwn {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.marginRight15 {
+  margin-right: 15px;
+}
+.clrCyan {
+  color: #00a0a8;
+}
+
+.button-4 {
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
+    rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  cursor: pointer;
+  display: flex;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0.7rem 4rem;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  text-align: center;
+}
+
+.button-4:hover {
+  background-color: rgb(244, 113, 65);
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+.button-4:disabled {
+  background-color: rgb(244, 113, 65);
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959da5;
+  cursor: default;
+}
+
+.button-4:active {
+  background-color: #edeff2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+.button-4:focus {
+  outline: 1px transparent;
+ 
+}
+
+.button-4:before {
+  display: none;
+}
+
+.button-4:-webkit-details-marker {
+  display: none;
+}
+
+.FooterConatiner{
+  position: absolute;
+  top: 85rem;
+}
+
+.formStyle{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+}
+
+.paydetails{
+  background: none;
+  border: none;
+  border-bottom: 2px solid lightgray;
+  outline: none;
+  padding: 10px;
+  box-sizing: border-box;
+  text-transform: capitalize;
+  width: 30%;
+}
+
+.pntcnct{
+  height: 8rem;
+}
+
+.upi{
+  font-size: 1.3rem;
+  margin-left: 4.5rem;
+  color: #52aca3;
+  margin-bottom: 2rem;
+}
+
+.expanded3{
+  height: 55%;
+  width: 100%;
+  align-items: flex-start;
+  border: 2px solid rgba(211, 211, 211, 0.415);
+
+  /* border: 3px solid black; */
+  background-color: white;
+  /* border-radius: 10px; */
+  margin: 10px;
+  /* cursor: pointer; */
+  /* margin: 10px; */
+}

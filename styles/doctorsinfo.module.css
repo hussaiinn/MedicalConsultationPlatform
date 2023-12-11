@@ -88,7 +88,8 @@
 .input-group7,
 .input-group8,
 .input-group9,
-.input-group10 {
+.input-group10,
+.input-group11 {
 	position: relative;
 	margin-bottom: 20px;
 }
@@ -102,7 +103,8 @@
 .input-group7,
 .input-group8,
 .input-group9,
-.input-group10 {
+.input-group10,
+.input-group11 {
 	display: flex;
 	flex-direction: row;
 	width: 100%;

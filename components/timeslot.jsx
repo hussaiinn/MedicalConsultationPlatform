@@ -1,6 +1,7 @@
 // components/TimeSlotSelect.js
 import React, { useEffect, useState } from "react";
 import styles from "@styles/customcaleder.module.css";
+import style from "@styles/checkout.module.css";
 
 const TimeSlotSelect = ({
   onSelect,
@@ -76,7 +77,7 @@ const TimeSlotSelect = ({
   const timeSlots = generateTimeSlots();
 
   return (
-    <select onChange={handleTimeChange}>
+    <select onChange={handleTimeChange} className={style.inputASDate}>
       {" "}
       {/**(e) => onSelect(e.target.value, graytimes) */}
       <option value="">Select a Time Slot</option>
