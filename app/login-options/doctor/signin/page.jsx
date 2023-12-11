@@ -10,7 +10,7 @@ const SignIn = () => {
   const {data: session} = useSession();
   const handleSignIn = async () => {
     signIn("google", {
-      callbackUrl: `${`/user_profile?id=${session?.user?.email}`}`,
+      callbackUrl: `${`/`}`,
     });
   };
   return (
