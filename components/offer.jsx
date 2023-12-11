@@ -1,6 +1,6 @@
 import React from "react";
 import style from "@styles/Offer.module.css";
-import gd from "public/images/group-docs.svg";
+import gd from "public/images/Group-docs.svg";
 
 const OfferBox = () => {
   return (
