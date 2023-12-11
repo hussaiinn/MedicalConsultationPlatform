@@ -1,17 +1,15 @@
 /** @type {import('next').NextConfig} */
+const nextConfig = {};
+
+module.exports = nextConfig;
+
 module.exports = {
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  webpack: (config) => {
     config.resolve.fallback = {
       "mongodb-client-encryption": false,
       aws4: false,
-      // Add other fallbacks if needed
     };
 
-    // Enable the Webpack build worker only for non-server builds
-    if (!isServer) {
-      config.experiments = { webpackBuildWorker: true };
-    }
-
-    return config;
-  },
+    return config;
+  },
 };
