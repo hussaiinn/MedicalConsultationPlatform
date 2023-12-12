@@ -20,7 +20,7 @@ const LoginOptions = ({params}) => {
     const handleDoctorClick = () => {
         setHighlightDoctor(true);
         setHighlightPatient(false);
-        setButtonPath(`/login-options/doctor/${reqst}`)
+        setButtonPath(`/login-options/doctor/signin`)
     };
     
     const handlePatientClick = () => {

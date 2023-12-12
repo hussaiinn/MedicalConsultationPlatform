@@ -7,7 +7,7 @@ import { useUser } from '@components/userContext'
 import { signIn } from 'next-auth/react'
 
 
-const UsersignUp = () => {
+const UsersignUp = ({isloading}) => {
     const router = useRouter()
     // const { setUserId } = useUser();
     // const {data: session} = useSession();
@@ -28,13 +28,16 @@ const UsersignUp = () => {
     const handleSubmit = async (e) => {
         // const uid = uuid();
         e.preventDefault();
+        isloading(true, 'Verifying')
 
         if (!FormData.name || !FormData.email || !FormData.dob || !FormData.gender || !FormData.mobile || !FormData.address || !FormData.password || !FormData.cnfpass) {
             alert('All fields are necessary')
+            isloading(false,'Verifying')
         }
         else {
             if (FormData.password !== FormData.cnfpass) {
                 alert("Passwords don't match")
+                isloading(false,'Verifying')
                 
             }
             else {
@@ -58,6 +61,7 @@ const UsersignUp = () => {
                         })
                     })
                     if (response.ok) {
+                        isloading(true, 'Redirecting')
                         const res = await signIn('credentials', {
                             email: FormData.email,
                             password: FormData.password,

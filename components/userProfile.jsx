@@ -9,6 +9,8 @@ const UserProfile = ({ data }) => {
 
   // }
   console.log(data);
+  const dob = new Date(data.dob).toLocaleDateString();
+  // console.log(dob.toLocaleDateString())
   return (
     <>
       <div className="container rounded bg-white mt-3 mb-5">
@@ -48,7 +50,7 @@ const UserProfile = ({ data }) => {
               <div className="row mt-3">
                 <div className="col-md-12">
                   <label className="labels">Date of Birth</label>
-                  <p className="form-control">{data.dob}</p>
+                  <p className="form-control">{dob}</p>
                 </div>
                 <div className="col-md-12">
                   <p className="labels">Gender</p>

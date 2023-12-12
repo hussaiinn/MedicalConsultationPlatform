@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import UserProfile from "@components/userProfile";
 import { useSearchParams } from "next/navigation";
 import DoctorProfile from "@components/doctorProfile";
+import DefaultLoad from "@components/defaultloader";
 
 const ProfileUser = () => {
   const [recData, setRecData] = useState(null);
@@ -19,7 +20,7 @@ const ProfileUser = () => {
     getData();
   }, []);
 
-  if (!recData) return <div>Loading....</div>;
+  if (!recData) return <DefaultLoad/>;
   return (
     <>
       {recData?.usertype === "Doctor" ? (

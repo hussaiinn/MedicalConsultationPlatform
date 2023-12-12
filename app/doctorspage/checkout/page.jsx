@@ -18,7 +18,9 @@ import Overflow3 from "@components/overflow3";
 import NavBar from "@components/Nav";
 import OfferBox from "@components/offer";
 import ConsultationDetails from "@components/consDetails";
+import WriteLoader from "@components/writingloader";
 import Footer from "@components/footer";
+import DotsLoader from "@components/dotsloader";
 
 const IndexPage = ({ params }) => {
   const router = useRouter();
@@ -36,13 +38,14 @@ const IndexPage = ({ params }) => {
   const [grayedOutTimeSlots, setGrayedOutTimeSlots] = useState([]);
   const { data: session } = useSession();
   const [selectedTime, setSelectedTime] = useState("");
+  const [isloadstoring, setisLoadStoring] = useState(false);
   const [appointmentData, setAppointmentData] = useState({
     docId: "",
     userId: "",
     patientName: "",
     date: "",
     time: "",
-    trnsId: "",
+    trnsId: "1234",
     accName: "",
     amtPaid: "",
     mobile: "",
@@ -75,9 +78,12 @@ const IndexPage = ({ params }) => {
       // console.log(appointmentData.docId);
       // console.log(appointmentData.userId);
       // console.log(appointmentData.patientName);
-      if (docData.fees - appointmentData.amtPaid > 0) {
+      if (docData.fees - appointmentData.amtPaid !== 0) {
+        console.log(docData.fees - appointmentData.amtPaid);
+        console.log(appointmentData.amtPaid);
         alert("Please Pay the full amount");
       } else {
+        setisLoadStoring(true);
         try {
           const res = await fetch(`../../api/appointment/new`, {
             method: "POST",
@@ -85,10 +91,12 @@ const IndexPage = ({ params }) => {
             body: JSON.stringify(appointmentData),
           });
           if (res.ok) {
-            alert("Appointment Booked, Wait for Doctors Approval");
-            router.push(
-              `/profilepagedoc/appointments?id=${userData.email}&ut=1`
-            );
+            setisLoadStoring(false);
+            router.push("https://buy.stripe.com/test_6oE15D0ZP8bl3zG4gg");
+            // alert("Appointment Booked, Wait for Doctors Approval");
+            // router.push(
+            //   `/profilepagedoc/appointments?id=${userData.email}&ut=1`
+            // );
           }
         } catch (error) {
           console.log("Error in storing appointment");
@@ -243,9 +251,13 @@ const IndexPage = ({ params }) => {
   };
   return (
     <>
-      <NavBar />
-      <OfferBox />
-      {/* <div className={style.container}>
+      {isloadstoring ? (
+        <DotsLoader />
+      ) : (
+        <>
+          <NavBar />
+          <OfferBox />
+          {/* <div className={style.container}>
         <div
           className={`${style.column} ${column1Expanded ? style.expanded : ""}`}
         >
@@ -338,170 +350,194 @@ const IndexPage = ({ params }) => {
         {/* {userData.name} }
       </div>
        */}
-
-      <div className={style.taskList}>
-        <div className={style.taskCard}>
-          <h5 className={style.taskHeading}>
-            <span className={style.num}>1</span> {userData?.name.toUpperCase()}{" "}
-            | +91 {userData?.mobile}
-          </h5>
-          {/* <Overflow /> */}
-        </div>
-        <div className={column1Expanded ? style.expanded : style.taskCard}>
-          <h5 className={style.taskHeading} onClick={handleColumn1expand}>
-            <span className={style.num}>2</span> Patient Details
-          </h5>
-          {/* <Overflow1 /> */}
-          <div className={styles.expandInfo}>
-            <div className={styles.expandInput}>
-              <input
-                type="text"
-                placeholder="your name"
-                name="patientName"
-                value={appointmentData.patientName}
-                onChange={handleappointmentData}
-                className={styles.inputASDate}
-              />
-              <input
-                type="text"
-                placeholder="Contact Number"
-                name="mobile"
-                value={appointmentData.mobile}
-                onChange={handleappointmentData}
-                className={styles.inputASDate}
-              />
-            </div>
-            <div className={styles.expandMesBtn}>
-              {/* <span className={styles.message}>*Consultation Timings</span> */}
-              <button
-                className={`${styles["button-4"]} ${styles.consultBtn}`}
-                onClick={handleColumn1Submit}
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        </div>
-        <div
-          className={column2Expanded ? style.expanded : style.taskCard}
-          style={{ height: calendarOpen ? "70%" : null }}
-        >
-          <h5 className={style.taskHeading} onClick={handleColumn2expand}>
-            <span className={style.num}>3</span> Consultation Date and Time
-          </h5>
-          {/* <Overflow2 /> */}
-          <div className={styles.expandInfo}>
-            {calendarOpen && (
-              <CustomCalendar
-                onSelectDate={setSelectedDate}
-                onClose={closeCalendar}
-                grayedOutDates={grayedOutDates}
-              />
-            )}{" "}
-            <div className={styles.expandInput}>
-              <form
-                action=""
-                onSubmit={handledatetime}
-                className={style.formStyle}
-              >
-                <input
-                  type="text"
-                  placeholder="date"
-                  value={selectedDate}
-                  onFocus={openCalendar}
-                  name="date"
-                  className={style.inputASDate}
-                  readOnly
-                />
-                <TimeSlotSelect
-                  onSelect={handletimeselect}
-                  grayedOutTimeSlots={grayedOutTimeSlots}
-                  selectedDate={selectedDate}
-                  data={timeSlots ? timeSlots : null}
-                />
-              </form>
-            </div>
-            <div className={styles.expandMesBtn}>
-              {/* <span className={styles.message}>*Consultation Timings</span> */}
-              <button
-                className={`${styles["button-4"]} ${styles.consultBtn}`}
-                onClick={handleColumn2Submit}
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className={column3Expanded ? style.expanded3 : style.taskCard}>
-          <h5 className={style.taskHeading} onClick={handleColumn3expand}>
-            <span className={style.num}>4</span> Payment Details
-          </h5>
-          {/* <Overflow3 /> */}
-          <div className={styles.expandInfo}>
-              <h4 className={styles.upi}>UPI ID: - {docData?.upi}</h4>
-            <div className={styles.expandInput}>
-              <form
-                action=""
-                onSubmit={handlefinalSubmit}
-                className={style.formStyle}
-              >
-                <input
-                  type="text"
-                  placeholder="Taransaction ID"
-                  name="trnsId"
-                  value={appointmentData.trnsId}
-                  onChange={handleappointmentData}
-                  className={style.paydetails}
-                />
-                <input
-                  type="text"
-                  placeholder="Accound holder Name"
-                  name="accName"
-                  value={appointmentData.accName}
-                  onChange={handleappointmentData}
-                  className={style.paydetails}
-                />
-                <div className={style.formStyle}>
-                  <input
-                    type="text"
-                    placeholder="Amount Paid"
-                    name="amtPaid"
-                    value={appointmentData.amtPaid}
-                    onChange={handleappointmentData}
-                    className={style.paydetails}
-                  />
-                  <div className={style.paydetails}>
-                    <label htmlFor="ss">Payment Screen shot</label>
-                    <input type="file" id="ss" />
+          {(!docData && !userData) || userData === undefined ? (
+            <>
+              <WriteLoader msg={session?.user?null:'User Logged Out'} />
+              
+            </>
+          ) : (
+            <>
+              <div className={style.taskList}>
+                <div className={style.taskCard}>
+                  <h5 className={style.taskHeading}>
+                    <span className={style.num}>1</span>{" "}
+                    {userData?.name.toUpperCase()} | +91 {userData?.mobile}
+                  </h5>
+                  {/* <Overflow /> */}
+                </div>
+                <div
+                  className={column1Expanded ? style.expanded : style.taskCard}
+                >
+                  <h5
+                    className={style.taskHeading}
+                    onClick={handleColumn1expand}
+                  >
+                    <span className={style.num}>2</span> Patient Details
+                  </h5>
+                  {/* <Overflow1 /> */}
+                  <div className={styles.expandInfo}>
+                    <div className={styles.expandInput}>
+                      <input
+                        type="text"
+                        placeholder="your name"
+                        name="patientName"
+                        value={appointmentData.patientName}
+                        onChange={handleappointmentData}
+                        className={styles.inputASDate}
+                      />
+                      <input
+                        type="text"
+                        placeholder="Contact Number"
+                        name="mobile"
+                        value={appointmentData.mobile}
+                        onChange={handleappointmentData}
+                        className={styles.inputASDate}
+                      />
+                    </div>
+                    <div className={styles.expandMesBtn}>
+                      {/* <span className={styles.message}>*Consultation Timings</span> */}
+                      <button
+                        className={`${styles["button-4"]} ${styles.consultBtn}`}
+                        onClick={handleColumn1Submit}
+                      >
+                        Next
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <button
-                  type="submit"
-                  onClick={handleColumn3Submit}
-                  className={`${styles["button-4"]} ${styles.consultBtn}`}
+                <div
+                  className={column2Expanded ? style.expanded : style.taskCard}
+                  style={{ height: calendarOpen ? "70%" : null }}
                 >
-                  Submit
-                </button>
-              </form>
-            </div>
-            <div className={styles.expandMesBtn}>
-              {/* <span className={styles.message}>*Consultation Timings</span> */}
-              {/* <button className={`${styles["button-4"]} ${styles.consultBtn}`}>
+                  <h5
+                    className={style.taskHeading}
+                    onClick={handleColumn2expand}
+                  >
+                    <span className={style.num}>3</span> Consultation Date and
+                    Time
+                  </h5>
+                  {/* <Overflow2 /> */}
+                  <div className={styles.expandInfo}>
+                    {calendarOpen && (
+                      <CustomCalendar
+                        onSelectDate={setSelectedDate}
+                        onClose={closeCalendar}
+                        grayedOutDates={grayedOutDates}
+                      />
+                    )}{" "}
+                    <div className={styles.expandInput}>
+                      <form
+                        action=""
+                        onSubmit={handledatetime}
+                        className={style.formStyle}
+                      >
+                        <input
+                          type="text"
+                          placeholder="date"
+                          value={selectedDate}
+                          onFocus={openCalendar}
+                          name="date"
+                          className={style.inputASDate}
+                          readOnly
+                        />
+                        <TimeSlotSelect
+                          onSelect={handletimeselect}
+                          grayedOutTimeSlots={grayedOutTimeSlots}
+                          selectedDate={selectedDate}
+                          data={timeSlots ? timeSlots : null}
+                        />
+                      </form>
+                    </div>
+                    <div className={styles.expandMesBtn}>
+                      {/* <span className={styles.message}>*Consultation Timings</span> */}
+                      <button
+                        className={`${styles["button-4"]} ${styles.consultBtn}`}
+                        onClick={handleColumn2Submit}
+                      >
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className={column3Expanded ? style.expanded3 : style.taskCard}
+                >
+                  <h5
+                    className={style.taskHeading}
+                    onClick={handleColumn3expand}
+                  >
+                    <span className={style.num}>4</span> Payment Details
+                  </h5>
+                  {/* <Overflow3 /> */}
+                  <div className={styles.expandInfo}>
+                    {/* <h4 className={styles.upi}>UPI ID: - {docData?.upi}</h4> */}
+                    <div className={styles.expandInput}>
+                      <form
+                        action=""
+                        onSubmit={handlefinalSubmit}
+                        className={style.formStyle}
+                      >
+                        {/* <input
+                      type="text"
+                      placeholder="Transaction ID"
+                      name="trnsId"
+                      value={appointmentData.trnsId}
+                      onChange={handleappointmentData}
+                      className={style.paydetails}
+                    /> */}
+                        <input
+                          type="text"
+                          placeholder="Accound holder Name"
+                          name="accName"
+                          value={appointmentData.accName}
+                          onChange={handleappointmentData}
+                          className={style.paydetails}
+                        />
+                        <div className={style.formStyle}>
+                          <input
+                            type="text"
+                            placeholder="Amount Pay"
+                            name="amtPaid"
+                            value={appointmentData.amtPaid}
+                            onChange={handleappointmentData}
+                            className={style.paydetails}
+                          />
+                          {/* <div className={style.paydetails}>
+                        <label htmlFor="ss">Payment Screen shot</label>
+                        <input type="file" id="ss" />
+                      </div> */}
+                        </div>
+                        <button
+                          type="submit"
+                          onClick={handleColumn3Submit}
+                          className={`${styles["button-4"]} ${styles.consultBtn}`}
+                        >
+                          Pay
+                        </button>
+                      </form>
+                    </div>
+                    <div className={styles.expandMesBtn}>
+                      {/* <span className={styles.message}>*Consultation Timings</span> */}
+                      {/* <button className={`${styles["button-4"]} ${styles.consultBtn}`}>
                 Submit
               </button> */}
-            </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ConsultationDetails
+                data={docData ? docData : ""}
+                ptname={appointmentData.patientName}
+                ptmobile={appointmentData.mobile}
+                ptpaid={appointmentData.amtPaid}
+              />
+            </>
+          )}
+          <div className={style.FooterConatiner}>
+            <Footer />
           </div>
-        </div>
-      </div>
-      <ConsultationDetails
-        data={docData ? docData : ""}
-        ptname={appointmentData.patientName}
-        ptmobile={appointmentData.mobile}
-        ptpaid={appointmentData.amtPaid}
-      />
-      <div className={style.FooterConatiner}>
-        <Footer />
-      </div>
+        </>
+      )}
     </>
   );
 };

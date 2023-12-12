@@ -34,7 +34,7 @@
   .card {
     border: 1px solid lightgray;
     height: 17rem;
-    width: 71%;
+    width: 61%;
     /* margin: 20rem 0 0 5rem; */
     /* border-radius: 30px; */
     background: white;
@@ -59,7 +59,7 @@
     margin: 1rem 0 0 3rem;
     border-right: 1px solid #8080805c;
     justify-content: space-between;
-    height: 13rem;
+    height: 76%;
   }
   .cardBtn {
     display: flex;

@@ -6,14 +6,18 @@ import styles from "@styles/doctorspage.module.css";
 import ProfileCard from "@components/profileCardList";
 import GrayBody from "@components/graybody";
 import { useSearchParams } from "next/navigation";
+import DefaultLoad from "@components/defaultloader";
+import nodoc from "@public/images/undraw_doctor_kw-5-l.svg";
+import Image from "next/image";
 
 const DoctorListPage = () => {
   const [receivedData, setReceivedData] = useState(null);
   // const [isClient, setIsClient] = useState(false)
   // const [queryparams, setQueryParams] = useState(null);
   const searchParams = useSearchParams();
-  const [queryparams, setQueryParams] = useState(null)
-  
+  const [queryparams, setQueryParams] = useState(null);
+  const [isloader, setisloader] = useState(true);
+
   useEffect(() => {
     const getData = async () => {
       setQueryParams(searchParams.get("name") || "all");
@@ -25,6 +29,9 @@ const DoctorListPage = () => {
         );
         const data = await response.json();
         setReceivedData(data);
+        if (response.ok) {
+          setisloader(false);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -39,6 +46,7 @@ const DoctorListPage = () => {
       : receivedData;
 
   console.log("..", receivedData);
+  console.log(filteredData?.length === 0 ? "hey" : "no");
 
   return (
     <>
@@ -47,8 +55,19 @@ const DoctorListPage = () => {
       <OfferBox />
       <div className={styles.doctorList}>
         <h2>Top Doctors Available</h2>
-        {filteredData &&
-          filteredData.map((d) => <ProfileCard key={d.id} data={d} />)}
+        {isloader ? (
+          <DefaultLoad />
+        ) : filteredData?.length === 0 ? (
+          <>
+            {" "}
+            <Image src={nodoc} className={styles.nodoc}/>
+              <p className={styles.nodoctext}>No Doctor Found</p>
+            
+          </>
+        ) : (
+          filteredData &&
+          filteredData.map((d) => <ProfileCard key={d.id} data={d} />)
+        )}
       </div>
     </>
   );

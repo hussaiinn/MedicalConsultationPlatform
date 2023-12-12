@@ -10,3 +10,16 @@
     background-color: gray;
     width: 100%;
 }
+
+.nodoc{
+    margin-left: 13rem;
+}
+
+.nodoctext{
+    margin-left: 14.3rem;
+    position: absolute;
+    bottom: 2rem;
+    font-size: 1.2rem;
+    color: rgba(82, 172, 163, 0.52);
+    font-weight: bold;
+}

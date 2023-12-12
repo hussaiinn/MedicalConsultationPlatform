@@ -1,0 +1,88 @@
+.main {
+    margin: 0px;
+    padding: 0;
+  }
+.head {
+    margin-left: 2rem;
+    background: url('../public/images/undraw_access_account_re_8spm.svg');
+    background-repeat: no-repeat;
+    background-position: 56rem;
+    background-size: contain;
+  
+    /* display: flex;
+    flex-direction: column;
+    height: 100vh; */
+  }
+  .titleIden {
+    font-size: 3rem;
+    color: #4b38c4cf;
+    width: 36rem;
+    /* border-radius: 10px; */
+    border-bottom: 0.2rem solid #4b38c4cf;
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+  }
+  .txtIden {
+    width: 38rem;
+    height: 2rem;
+    word-spacing: 2px;
+    letter-spacing: 1px;
+    color: #4b38c4cf;
+  }
+  .btnIden {
+    background: none;
+    /* margin-left: 20%; */
+    margin-top: 9rem;
+    border: 3px solid #4a38c4;
+    /* border-radius: 10px; */
+    color: #4a38c4;
+  }
+  .marginTp {
+    margin-top: 10rem;
+  }
+  .button4 {
+    /* border: 1px solid rgba(27, 31, 35, 0.15); */
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0,
+      rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    cursor: pointer;
+    display: flex;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+      sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 18px;
+    font-weight: 600;
+    padding: 8px 20px;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    text-align: center;
+  }
+  
+  .button4:hover {
+    background-color: #f3f4f6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+  }
+  
+  .button4:disabled {
+    background-color: #fafbfc;
+    border-color: rgba(27, 31, 35, 0.15);
+    color: #959da5;
+    cursor: default;
+  }
+  
+  .button4:active {
+    background-color: #edeff2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+  }
+  
+  .button4:focus {
+    outline: 1px transparent;
+  }
+  
+  .button4:before {
+    display: none;
+  }
+  
+  .button4:-webkit-details-marker {
+    display: none;
+  }
+    

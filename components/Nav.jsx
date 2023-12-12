@@ -12,6 +12,7 @@ const NavBar = () => {
   // const uid = userId;
   const { data: session } = useSession();
   const [isSignOut, setisSignOut] = useState(false);
+  console.log("logged in",isSignOut);
 
   // console.log(session?.user)
   // console.log(userId)
@@ -77,7 +78,10 @@ const NavBar = () => {
                   <li className="nav-item nav-item-us us-button" id="signOut">
                     <button
                       className="nav-link nav-text-us"
-                      onClick={() => signOut()}
+                      onClick={() => {
+                        signOut();
+                        setisSignOut(true);
+                      }}
                     >
                       Sign Out
                     </button>
@@ -99,7 +103,7 @@ const NavBar = () => {
                     </Link>
                   </li>
                 </>
-              ) : (
+              ) :(
                 <>
                   <li className="nav-item nav-item-us us-button" id="login">
                     <Link

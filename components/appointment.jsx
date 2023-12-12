@@ -79,9 +79,10 @@ const Appointment = ({ type, data, updateapprove, ut }) => {
               <th>Patient Name</th>
               <th>Date</th>
               <th>Time</th>
-              <th>Transaction ID</th>
+              {/* <th>Transaction ID</th> */}
               <th>Amount Paid</th>
               <th>Contact No.</th>
+              <th>Status</th>
             </tr>
           </thead>
           {finalData.map((d, indx) => (

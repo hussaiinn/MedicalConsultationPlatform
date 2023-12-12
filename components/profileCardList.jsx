@@ -12,16 +12,24 @@ const ProfileCard = ({ data }) => {
     dispatch({ type: "SET_DATA", payload: data });
     if (session?.user) {
       router.push(`doctorspage/checkout?id=${data.email}`);
+    } else {
+      router.push(`/login-options/user-login?reqst=signup`);
     }
-    else{
-      router.push(`/login-options?name=signup`)
+  };
+  const handleprofileview = () => {
+    dispatch({ type: "SET_DATA", payload: data });
+    console.log(data.email);
+    if (session?.user) {
+      router.push(`doctorspage/profiledoc?id=${data.email}`);
+    } else {
+      router.push(`doctorspage/profiledoc?id=${data.email}`);
     }
   };
   return (
     <div>
       <div className={style.main}>
         <div className={style.card}>
-          <div className={style.cardImg}></div>
+          {/* <div className={style.cardImg}></div> */}
           <div className={style.cardTxt}>
             <div className={style.drIntro}>
               <h4 className={style.drName}>
@@ -44,6 +52,7 @@ const ProfileCard = ({ data }) => {
             <button
               type="button"
               className={`${style.profile} ${style.cardButton} ${style.button4}`}
+              onClick={handleprofileview}
             >
               View Profile
             </button>

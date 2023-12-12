@@ -385,3 +385,7 @@
   /* cursor: pointer; */
   /* margin: 10px; */
 }
+
+.nodata{
+  font-size: 50rem;
+}
