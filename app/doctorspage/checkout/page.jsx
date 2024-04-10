@@ -61,6 +61,7 @@ const IndexPage = ({ params }) => {
       return { ...crrFormData };
     });
   };
+  console.log(typeof(appointmentData.date));
 
   const handlefinalSubmit = async (e) => {
     e.preventDefault();

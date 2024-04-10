@@ -19,12 +19,14 @@ export const POST = async (req, res) => {
       reject,
     } = await req.json();
     console.log(docId, userId, amtPaid, date, time, trnsId, accName, amtPaid, approved, reject)
+    var convtDate = new Date(date);
+    console.log(convtDate, typeof(convtDate));
     await connectToDB();
     await Appointment.create({
       docId,
       userId,
       patientName,
-      date,
+      date: convtDate,
       time,
       trnsId,
       accName,

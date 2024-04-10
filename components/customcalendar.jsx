@@ -71,7 +71,7 @@ const CustomCalendar = ({ onSelectDate, onClose, grayedOutDates }) => {
       alert(`This Date can not be selected `);
     } else {
       setSelectedDate(date);
-      onSelectDate(date.toLocaleDateString()); // Format the date before passing it to the parent
+      onSelectDate(date); // Format the date before passing it to the parent
     }
   };
 

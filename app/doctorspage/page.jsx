@@ -4,13 +4,13 @@ import NavBar from "@components/Nav";
 import OfferBox from "@components/offer";
 import styles from "@styles/doctorspage.module.css";
 import ProfileCard from "@components/profileCardList";
-import GrayBody from "@components/graybody";
+// import GrayBody from "@components/graybody";
 import { useSearchParams } from "next/navigation";
 import DefaultLoad from "@components/defaultloader";
 import nodoc from "@public/images/undraw_doctor_kw-5-l.svg";
 import Image from "next/image";
 
-const DoctorListPage = () => {
+const DoctorListPage = ({params}) => {
   const [receivedData, setReceivedData] = useState(null);
   // const [isClient, setIsClient] = useState(false)
   // const [queryparams, setQueryParams] = useState(null);
@@ -21,7 +21,9 @@ const DoctorListPage = () => {
   useEffect(() => {
     const getData = async () => {
       setQueryParams(searchParams.get("name") || "all");
-      console.log(queryparams);
+      // console.log(searchParams.get('name'));
+      // console.log(searchParams.get('name')||'all')
+      // console.log(queryparams)
       console.log("in get data");
       try {
         const response = await fetch(
@@ -29,6 +31,7 @@ const DoctorListPage = () => {
         );
         const data = await response.json();
         setReceivedData(data);
+        console.log(data)
         if (response.ok) {
           setisloader(false);
         }

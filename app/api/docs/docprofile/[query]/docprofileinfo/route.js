@@ -8,6 +8,7 @@ export const GET = async (req, { params }) => {
     console.log("look for info");
 
     const docprofile = await DocInfo.find({});
+    console.log(docprofile)
     return new Response(JSON.stringify(docprofile), { status: 200 });
   } catch (error) {
     return NextResponse.json(
