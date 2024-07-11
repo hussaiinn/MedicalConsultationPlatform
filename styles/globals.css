@@ -1,3 +1,6 @@
 /* @import url(home.css);
 
 @import url(aboutUs.css); */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,18 @@
+/* body {
+  height: 100%;
+  width: 100%;
+} */
+.main {
+  display: flex;
+  /* flex-direction: ; */
+  height: 100vh;
+  width: 100%;
+}
+.admin {
+  /* opacity: 50%; */
+  border-color: rgba(128, 128, 128, 0.6);
+}
+
+.trr{
+  text-align: left;
+}

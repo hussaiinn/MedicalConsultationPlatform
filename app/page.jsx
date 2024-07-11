@@ -34,11 +34,11 @@ const Home = () => {
             <Head/>
             <ConTwo/>
             <ConThree/>
-            <HeadFour/>
-            <ConFour/>
+            {/* <HeadFour/> */}
+            {/* <ConFour/> */}
             <ConFive/>
-            <HeadSix/>
-            <ConSix/>
+            {/* <HeadSix/> */}
+            {/* <ConSix/> */}
             <ConSeven/>
             <Phone/>
             <ConTen/>

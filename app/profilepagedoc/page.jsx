@@ -28,7 +28,7 @@ const ProfileDoc = ({ params }) => {
     <div>
       {info ? (
         <>
-          <h3>{info.firstName}</h3>
+          <h1 className="border-red-400">{info.firstName}</h1>
           <h3>{info.lastName}</h3>
           <h3>{info.address}</h3>
           <h3>{info.mobile}</h3>

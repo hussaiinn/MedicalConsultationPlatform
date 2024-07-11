@@ -1,5 +1,5 @@
-import React from 'react'
-import ben from '../../public/images/ben.png'
+import React from "react";
+import ben from "../../public/images/ben.png";
 
 const ConSeven = () => {
   return (
@@ -17,21 +17,23 @@ const ConSeven = () => {
               detail you provide can be valuable.
             </li>
             <li className="ben-items">
-              Prepare a list of questions and issues you wish to address,
-              ensuring clear and honest communication of your symptoms. Every
-              detail you provide can be valuable.
+              Keep your medical history readily accessible, including past test
+              results and medication prescriptions.
             </li>
             <li className="ben-items">
-              Prepare a list of questions and issues you wish to address,
-              ensuring clear and honest communication of your symptoms. Every
-              detail you provide can be valuable.
+              Prior to the consultation, ensure a quiet and distraction-free
+              environment.
+            </li>
+            <li className="ben-items">
+              Consider having a companion present during the session. This way,
+              in case you miss any information, they can help provide a recap.
             </li>
           </ul>
         </div>
         <img src={ben.src} className="ben-img" />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ConSeven
+export default ConSeven;

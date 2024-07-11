@@ -36,7 +36,7 @@ const NavBar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div
-            className="collapse navbar-collapse nav-content-us"
+            className="navbar-collapse nav-content-us"
             id="navbarNav"
           >
             <ul className="navbar-nav">
@@ -58,7 +58,7 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item nav-item-us">
-                <Link className="nav-link nav-text-us" href="/medicine">
+                <Link className="nav-link nav-text-us" href="http://localhost:3002/">
                   Medicine
                 </Link>
               </li>
@@ -68,8 +68,8 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="nav-item nav-item-us">
-                <a className="nav-link nav-text-us" href="#">
-                  Video Consultant
+                <a className="nav-link nav-text-us" href="http://localhost:3003/">
+                  Chat Bot
                 </a>
               </li>
 
